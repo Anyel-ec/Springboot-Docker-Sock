@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  # PostgreSQL Service
+  postgresql_db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-defaultdb}
+      POSTGRES_USER: ${POSTGRES_USER:-defaultuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-defaultpassword}
+    ports:
+      - ${POSTGRES_PORT_HOST:-5432}:${POSTGRES_PORT_CONTAINER:-5432}
+
+volumes:
+  postgres_data:
